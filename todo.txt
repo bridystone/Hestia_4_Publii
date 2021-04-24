@@ -1,0 +1,1 @@
+TODO: create issue on Publii - deleting unneccessary style css in theme creates error one time

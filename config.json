@@ -1,7 +1,7 @@
 {
-    "name": "Blank",
-    "version": "1.1.0.0",
-    "author": "TidyCustoms <https://tidycustoms.net/>",
+    "name": "Hestia",
+    "version": "0.1.0.0",
+    "author": "Theme created by Jens Breidenstein <https://github.com/bridystone> based on an Wordpress theme by Themeisle <https://themeisle.com/>",
     "renderer": {
         "relatedPostsNumber": 3,
         "renderRelatedPosts": true,

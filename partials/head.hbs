@@ -57,8 +57,11 @@
       {{! /code injection by a Custom HTML tool }}
 
    </head>
-   <body>
+   {{!-- TODO: check, if these classes are used or Wordpress defaults --}}
+   <body class="home page-template-default page blog-post header-layout-default">
 
       {{! code injection by a Custom HTML tool }}
       {{{@bodyCustomCode}}}
       {{! /code injection by a Custom HTML tool }}
+      
+      <div class="wrapper">

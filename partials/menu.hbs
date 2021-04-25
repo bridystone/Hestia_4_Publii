@@ -1,19 +1,22 @@
-{{! check if this is a first menu level }}
-{{#unless level}}
-   <nav>
-{{/unless}}
-{{! /check if this is a first menu lavel }}
-
       {{! check if a submenu exists, then display .submenu class with number of nested menu levels; if the submenu does not exist, display the .menu class  }}
-      <ul{{#if level}} class="submenu level-{{level}}" aria-hidden="true" {{else}} class="menu"{{/if}}>
+      <ul{{#if level}} role="menu" class="dropdown-menu" {{else}} class="nav navbar-nav"{{/if}}>
 
          {{! loop generating a list of menu items}}
          {{#each items}}
-            <li{{menuItemClasses}}> {{! menuItemClasses generates the following CSS classses: .active and .has-submenu }}
+            {{!-- TODO: ENTER ALL CLASSES --}}
+            {{!-- dropdown (1st level) + dropdown-submenu (2nd level) --}}
+            {{#checkIf level '==' '3'}} {{!-- on 2nd submenu level => add dropdown-submenu --}}
+            <li {{#if items}} class="menu-item menu-item-type-post_type menu-item-object-page dropdown dropdown-submenu" {{else}} class="menu-item menu-item-type-post_type menu-item-object-page" {{/if}}> {{! menuItemClasses generates the following CSS classses: .active and .has-submenu }}
+            {{else}}
+            {{!-- TODO: manually entered classes in class (i.e. additional button) menuItemClasses ?! --}}
+            <li {{#if items}} class="menu-item menu-item-type-post_type menu-item-object-page dropdown" {{else}} class="menu-item menu-item-type-post_type menu-item-object-page" {{/if}}> {{! menuItemClasses generates the following CSS classses: .active and .has-submenu }}
+            {{/checkIf}}
 
             {{! check if the menu item is a link }}
             {{#if link}}
                <a
+                  class="dropdown-toggle"
+
                   href="{{menuUrl}}"
 
                   {{! check if title attribute exists }}
@@ -41,10 +44,19 @@
                   {{! /check if the menu item contains a submenu }}
 
                   {{label}}
+                  {{#if items}}
+                  {{!-- TODO: ONLY when submenu --}}
+                  <span class="caret-wrap"><span class="caret">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+                    </svg>
+                  </span></span>
+                  {{/if}}
                </a>
                {{! /check if the menu item is a link }}
 
             {{else}}
+            {{!-- TODO: NOT A LINK --}}
                {{! if the menu item is not a link display a separator }}
                <span
                   {{#if title}}
@@ -69,9 +81,3 @@
          {{! /loop generating a list of menu items}}
 
       </ul>
-
-{{! check if this is a first menu level }}
-{{#unless level}}
-   </nav>
-{{/unless}}
-{{! /check if this is a first menu level }}

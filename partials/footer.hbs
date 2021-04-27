@@ -11,8 +11,6 @@
 {{!-- end of wrapper div --}}
 </div>
 
-<script async src="{{js "scripts.js"}}"></script>
-
 {{!-- if parallax is not used, jQuery could be loaded here --}}
 {{#checkIf @config.custom.bigheader_effect '!=' 'parallax'}}
 <script defer src="{{js "jquery/jquery-3.6.0.min.js"}}"></script>
@@ -27,12 +25,17 @@
 {{!-- hestia main script --}}
 <script defer src="{{js "script.min.js"}}"></script>
 
+{{!-- Script fixes and own additions --}}
+<script defer src="{{js "scripts.js"}}"></script>
+
 {{!-- ERROR message regarding missing post.... mmmmmhhhhh --}}
 {{!-- TODO: this interfers with the data-interval configuration of caroussel --}}
+{{!-- 
 <script type="text/javascript" id="hestia_scripts-js-extra">
 /* <![CDATA[ */
 var requestpost = {"ajaxurl":"https:\/\/127.0.0.1\/wp-admin\/admin-ajax.php","disable_autoslide":"","masonry":""};
 /* ]]> */
-</script>
+</script> --}}
+
 </body>
 </html>

@@ -1,0 +1,3 @@
+TODO: create issue on Publii - deleting unneccessary "style.css" in theme creates error one time
+TODO: check how to deal with font awesome -> download current version? currently all files in css/webfonts - not ideal
+TODO: parallax.js depended of enabled in head (incl. jquery) or jquery in footer

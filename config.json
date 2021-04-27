@@ -1,7 +1,7 @@
 {
-    "name": "Blank",
-    "version": "1.1.0.0",
-    "author": "TidyCustoms <https://tidycustoms.net/>",
+    "name": "Hestia",
+    "version": "0.1.0.0",
+    "author": "Theme created by Jens Breidenstein <https://github.com/bridystone> based on an Wordpress theme by Themeisle <https://themeisle.com/>",
     "renderer": {
         "relatedPostsNumber": 3,
         "renderRelatedPosts": true,
@@ -70,6 +70,200 @@
         }
     ],
     "customConfig": [
+        {
+            "name": "bigheader_enabled",
+            "label": "Enabled",
+            "group": "Big Header",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "bigheader_title",
+            "label": "Title",
+            "group": "Big Header",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_subtitle",
+            "label": "Sub-Title",
+            "group": "Big Header",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_button_enabled",
+            "label": "Button",
+            "group": "Big Header",
+            "value": true,
+            "type": "checkbox",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_button_text",
+            "label": "Text",
+            "group": "Big Header",
+            "value": "More",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                },
+                {
+                    "field": "bigheader_button_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_button_link",
+            "label": "Link",
+            "group": "Big Header",
+            "value": "#more",
+            "note": "this is the local URL - use #anker",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                },
+                {
+                    "field": "bigheader_button_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_effect",
+            "label": "Effect",
+            "group": "Big Header",
+            "value": "static",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "static",
+                    "value": "static"
+                },
+                {
+                    "label": "parallax",
+                    "value": "parallax"
+                },
+                {
+                    "label": "slider",
+                    "value": "slider"
+                }
+            ],
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]            
+        },
+        {
+            "name": "bigheader_background",
+            "label": "Background Image",
+            "group": "Big Header",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_parallax_foreground",
+            "label": "Parallax Foreground Image",
+            "group": "Big Header",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "parallax"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_slider1_background",
+            "label": "Slider1 Image",
+            "group": "Big Header",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "slider"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_slider2_background",
+            "label": "Slider2 Image",
+            "group": "Big Header",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "slider"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_slider3_background",
+            "label": "Slider3 Image",
+            "group": "Big Header",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "slider"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_slider4_background",
+            "label": "Slider4 Image",
+            "group": "Big Header",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "slider"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
         {
             "name": "mainWidth",
             "label": "Main width",

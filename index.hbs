@@ -1,6 +1,9 @@
 {{! Front page; this file renders a front page with a list of the latest posts }}
 {{> head}}
 {{> navbar}}
+{{#checkIf @config.custom.bigheader_enabled '==' true}}
+    {{> bigheader}}
+{{/checkIf}}
 <main>
     {{! loop that generates a list of posts }}
     {{#each posts}}

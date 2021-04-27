@@ -49,6 +49,14 @@
       {{!-- enqueue_custom_fonts() from  ./inc/core/class-hestia-public.php --}}
       {{!-- TODO: check if custom font is required --> transfer to visual override? --}}
       <link rel="stylesheet" id="hestia_fonts-css" href="https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C500%2C700%7CRoboto+Slab%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=3.0.16" type="text/css" media="all">
+      {{!-- load parallax script + jQuery if configured --}}
+      {{#checkIf @config.custom.bigheader_enabled '==' true}}
+		{{#checkIf @config.custom.bigheader_effect '==' 'parallax'}}
+      <script src="{{js "jquery/jquery-3.6.0.min.js"}}"></script>
+      <script src="{{js "jquery/jquery-migrate-3.3.2.min.js"}}"></script>
+      <script src="{{js "parallax.min.js"}}"></script>
+      {{/checkIf}}
+      {{/checkIf}}
 
       {{jsonLD}}
      

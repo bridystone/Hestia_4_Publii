@@ -13,16 +13,26 @@
 
 <script async src="{{js "scripts.js"}}"></script>
 
-{{!-- jQuery from Wordpress is used --}}
+{{!-- if parallax is not used, jQuery could be loaded here --}}
+{{#checkIf @config.custom.bigheader_effect '!=' 'parallax'}}
 <script defer src="{{js "jquery/jquery-3.6.0.min.js"}}"></script>
 {{!-- TODO: Check if migrate jquery is still required --}}
 <script defer src="{{js "jquery/jquery-migrate-3.3.2.min.js"}}"></script>
+{{/checkIf}}
+
 {{!-- TODO: Check if bootstrap javascript is required --}}
 <script defer src="{{js "bootstrap/bootstrap.min.js"}}"></script>
 {{!-- TODO: not in tree now --}}
 {{!-- <script defer src="{{js "jquery/ui/core.min.js"}}"></script> --}}
 {{!-- hestia main script --}}
 <script defer src="{{js "script.min.js"}}"></script>
-{{!-- TODO: What about parallax.min.js?! --}}
+
+{{!-- ERROR message regarding missing post.... mmmmmhhhhh --}}
+{{!-- TODO: this interfers with the data-interval configuration of caroussel --}}
+<script type="text/javascript" id="hestia_scripts-js-extra">
+/* <![CDATA[ */
+var requestpost = {"ajaxurl":"https:\/\/127.0.0.1\/wp-admin\/admin-ajax.php","disable_autoslide":"","masonry":""};
+/* ]]> */
+</script>
 </body>
 </html>

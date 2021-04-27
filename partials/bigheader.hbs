@@ -1,0 +1,83 @@
+<div id="carousel-hestia-generic" class="carousel slide" data-ride="carousel">
+	<div class="carousel slide" data-ride="carousel" data-interval="1000" >
+		{{!-- TODO: data interval change --}}
+		<div class="carousel-inner">
+			{{#checkIf @config.custom.bigheader_effect '==' 'parallax'}}
+			<div id="parallax_move" style="width: 1720px; margin-left: -60px; margin-top: -60px; position: absolute; transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; pointer-events: none;">
+				<div class="layer layer1" data-depth="0.10" style="background-image: url({{@config.custom.bigheader_background}}); height: 584.5px; transform: translate3d(11.6px, -4.6px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
+				</div>
+				{{#if @config.custom.bigheader_parallax_foreground}}
+				<div class="layer layer2" data-depth="0.20" style="background-image: url({{@config.custom.bigheader_parallax_foreground}}); height: 184.5px; transform: translate3d(23.3px, -9.3px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: absolute; display: block; left: 0px; top: 0px;">
+				</div>
+				{{/if}}
+			</div>
+			{{/checkIf}}
+			<div class="item active">
+				<div class="page-header" style="min-height: 441px;">
+					<div class="container" style="padding-top: 135px;">
+						<div class="row hestia-big-title-content">
+							<div class="big-title-slider-content text-center col-sm-8 col-sm-offset-2">
+								{{#if @config.custom.bigheader_title}}
+								<h1 class="hestia-title">{{@config.custom.bigheader_title}}</h1>
+								{{/if}}
+								{{#if @config.custom.bigheader_subtitle}}
+								<span class="sub-title">{{@config.custom.bigheader_subtitle}}</span>
+								{{/if}}
+								{{#checkIf @config.custom.bigheader_button_enabled '==' true}}
+								<div class="buttons">
+									<a href="{{@config.custom.bigheader_button_link}}" title="{{@config.custom.bigheader_button_text}}" class="btn btn-primary">{{@config.custom.bigheader_button_text}}</a>
+								</div>
+								{{/checkIf}}
+							</div>
+						</div>
+					</div><!-- /.container -->
+					{{#checkIf @config.custom.bigheader_effect '==' 'parallax'}}
+					<div class="header-filter">
+					</div><!-- /.header-filter -->
+					{{else}}
+					<div class="header-filter" style="background-image: url({{@config.custom.bigheader_background}})">
+					</div><!-- /.header-filter -->
+					{{/checkIf}}
+				</div><!-- /.page-header -->
+			</div> <!-- item -->
+
+{{!-- TODO: Additional Slider images --}}
+{{!-- TODO: custom Slider Titles --}}
+			{{#if @config.custom.bigheader_slider1_background}}
+			<div class="item">
+				<div class="page-header" style="min-height: 441px;">
+					<div class="container" style="padding-top: 135px;">
+						<div class="row hestia-big-title-content">
+							<div class="big-title-slider-content text-center col-sm-8 col-sm-offset-2">
+								{{#if @config.custom.bigheader_title}}
+								<h1 class="hestia-title">{{@config.custom.bigheader_title}}</h1>
+								{{/if}}
+								{{#if @config.custom.bigheader_subtitle}}
+								<span class="sub-title">{{@config.custom.bigheader_subtitle}}</span>
+								{{/if}}
+								{{#checkIf @config.custom.bigheader_button_enabled '==' true}}
+								<div class="buttons">
+									<a href="{{@config.custom.bigheader_button_link}}" title="{{@config.custom.bigheader_button_text}}" class="btn btn-primary">{{@config.custom.bigheader_button_text}}</a>
+								</div>
+								{{/checkIf}}
+							</div>
+						</div>
+					</div><!-- /.container -->
+					<div class="header-filter" style="background-image: url({{@config.custom.bigheader_slider1_background}})">
+					</div><!-- /.header-filter -->
+				</div><!-- /.page-header -->
+			</div> <!-- item -->
+			{{/if}}
+
+			{{!-- Slider control --}}
+			{{#checkIf  @config.custom.bigheader_effect '==' 'slider'}}
+            <a class="left carousel-control" href="#carousel-hestia-generic" data-slide="prev">
+            <i class="fas fa-angle-left"></i>
+            </a>
+            <a class="right carousel-control" href="#carousel-hestia-generic" data-slide="next">
+            <i class="fas fa-angle-right"></i>
+            </a>
+			{{/checkIf}}
+		</div>
+	</div>
+</div>

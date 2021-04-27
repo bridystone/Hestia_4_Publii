@@ -265,6 +265,23 @@
                 }]
         },
         {
+            "name": "bigheader_slider_interval",
+            "label": "Interval in ms",
+            "group": "Big Header",
+            "value": "10000",
+            "note" : "time between slides in ms",
+            "type": "number",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "slider"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
             "name": "mainWidth",
             "label": "Main width",
             "group": "Layout",

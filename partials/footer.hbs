@@ -13,29 +13,32 @@
 
 {{!-- if parallax is not used, jQuery could be loaded here --}}
 {{#checkIf @config.custom.bigheader_effect '!=' 'parallax'}}
-<script defer src="{{js "jquery/jquery-3.6.0.min.js"}}"></script>
+<script src="{{js "jquery/jquery-3.6.0.min.js"}}"></script>
 {{!-- TODO: Check if migrate jquery is still required --}}
-<script defer src="{{js "jquery/jquery-migrate-3.3.2.min.js"}}"></script>
+<script src="{{js "jquery/jquery-migrate-3.3.2.min.js"}}"></script>
 {{/checkIf}}
 
+{{!-- Script fixes and own additions --}}
+{{!-- has to be executed before script.min.js --}}
+<script src="{{js "scripts.js"}}"></script>
+
+
 {{!-- TODO: Check if bootstrap javascript is required --}}
-<script defer src="{{js "bootstrap/bootstrap.min.js"}}"></script>
+<script src="{{js "bootstrap/bootstrap.min.js"}}"></script>
 {{!-- TODO: not in tree now --}}
 {{!-- <script defer src="{{js "jquery/ui/core.min.js"}}"></script> --}}
 {{!-- hestia main script --}}
-<script defer src="{{js "script.min.js"}}"></script>
+<script src="{{js "script.min.js"}}"></script>
 
-{{!-- Script fixes and own additions --}}
-<script defer src="{{js "scripts.js"}}"></script>
-
-{{!-- ERROR message regarding missing post.... mmmmmhhhhh --}}
-{{!-- TODO: this interfers with the data-interval configuration of caroussel --}}
-{{!-- 
-<script type="text/javascript" id="hestia_scripts-js-extra">
+{{!-- slide interval settings --}}
+{{#if @config.custom.bigheader_slider_interval}}
+<script type="text/javascript" id="settings">
 /* <![CDATA[ */
-var requestpost = {"ajaxurl":"https:\/\/127.0.0.1\/wp-admin\/admin-ajax.php","disable_autoslide":"","masonry":""};
+$('.carousel' ).carousel({
+   interval: {{@config.custom.bigheader_slider_interval}} 
+});
 /* ]]> */
-</script> --}}
-
+</script>
+{{/if}}
 </body>
 </html>

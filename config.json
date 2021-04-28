@@ -147,6 +147,64 @@
                 }]
         },
         {
+            "name": "bigheader_title_alignment",
+            "label": "Alignment",
+            "group": "Big Header",
+            "value": "center",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "left",
+                    "value": "left"
+                },
+                {
+                    "label": "center",
+                    "value": "center"
+                },
+                {
+                    "label": "right",
+                    "value": "right"
+                }
+            ],
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "bigheader_widget_html",
+            "label": "Widget",
+            "group": "Big Header",
+            "value": "",
+            "type": "wysiwyg",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                },
+                {
+                    "field": "bigheader_title_alignment",
+                    "value": "left"
+                }]
+        },
+        {
+            "name": "bigheader_widget_html",
+            "label": "Widget",
+            "group": "Big Header",
+            "value": "",
+            "type": "wysiwyg",
+            "dependencies": [
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                },
+                {
+                    "field": "bigheader_title_alignment",
+                    "value": "right"
+                }]
+        },
+        {
             "name": "bigheader_effect",
             "label": "Effect",
             "group": "Big Header",

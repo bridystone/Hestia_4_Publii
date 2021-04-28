@@ -32,7 +32,23 @@
 				<div class="page-header" style="min-height: 441px;">
 					<div class="container" style="padding-top: 135px;">
 						<div class="row hestia-big-title-content">
+							{{!-- Alignment of Header Title --}}
+							{{#checkIf @config.custom.bigheader_title_alignment '==' 'left'}}
+							<div class="big-title-slider-content text-left col-md-7 margin-right-auto">
+							{{/checkIf}}
+							{{#checkIf @config.custom.bigheader_title_alignment '==' 'center'}}
 							<div class="big-title-slider-content text-center col-sm-8 col-sm-offset-2">
+							{{/checkIf}}
+							{{#checkIf @config.custom.bigheader_title_alignment '==' 'right'}}
+							{{!-- if there is widget content? --}}
+							{{#if @config.custom.bigheader_widget_html}}
+							<div class="big-title-sidebar-wrapper  col-md-5  hestia-slider-alignment-left ">
+								{{{@config.custom.bigheader_widget_html}}}
+							</div>
+							{{/if}}
+							<div class="big-title-slider-content text-right col-md-7 margin-left-auto">
+							{{/checkIf}}
+							{{!-- Header Title --}}
 								{{#if @config.custom.bigheader_title}}
 								<h1 class="hestia-title">{{@config.custom.bigheader_title}}</h1>
 								{{/if}}
@@ -45,6 +61,14 @@
 								</div>
 								{{/checkIf}}
 							</div>
+							{{#checkIf @config.custom.bigheader_title_alignment '==' 'left'}}
+							{{!-- if there is widget content? --}}
+							{{#if @config.custom.bigheader_widget_html}}
+							<div class="big-title-sidebar-wrapper col-md-5 hestia-slider-alignment-right ">
+								{{{@config.custom.bigheader_widget_html}}}
+							</div>
+							{{/if}}
+							{{/checkIf}}
 						</div>
 					</div><!-- /.container -->
 					{{#checkIf @config.custom.bigheader_effect '==' 'parallax'}}

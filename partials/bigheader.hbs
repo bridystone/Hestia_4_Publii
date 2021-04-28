@@ -1,6 +1,23 @@
 <div id="carousel-hestia-generic" class="carousel slide" data-ride="carousel">
 	<div class="carousel slide" data-ride="carousel" >
 		<div class="carousel-inner">
+			{{#checkIf @config.custom.bigheader_slider_indicators_enabled '==' true}}
+			<ol class="carousel-indicators">
+				<li class="active" data-target="#carousel-hestia-generic" data-slide-to="0"></li>
+				{{#if @config.custom.bigheader_slider1_background}}
+				<li data-target="#carousel-hestia-generic" data-slide-to="1"></li>
+				{{/if}}
+				{{#if @config.custom.bigheader_slider2_background}}
+				<li data-target="#carousel-hestia-generic" data-slide-to="2"></li>
+				{{/if}}
+				{{#if @config.custom.bigheader_slider3_background}}
+				<li data-target="#carousel-hestia-generic" data-slide-to="3"></li>
+				{{/if}}
+				{{#if @config.custom.bigheader_slider4_background}}
+				<li data-target="#carousel-hestia-generic" data-slide-to="4"></li>
+				{{/if}}
+			</ol>
+			{{/checkIf}}
 			{{#checkIf @config.custom.bigheader_effect '==' 'parallax'}}
 			<div id="parallax_move" style="width: 1720px; margin-left: -60px; margin-top: -60px; position: absolute; transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; pointer-events: none;">
 				<div class="layer layer1" data-depth="0.10" style="background-image: url({{@config.custom.bigheader_background}}); height: 584.5px; transform: translate3d(11.6px, -4.6px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
@@ -70,12 +87,12 @@
 
 			{{!-- Slider control --}}
 			{{#checkIf  @config.custom.bigheader_effect '==' 'slider'}}
-            <a class="left carousel-control" href="#carousel-hestia-generic" data-slide="prev">
-            <i class="fas fa-angle-left"></i>
-            </a>
-            <a class="right carousel-control" href="#carousel-hestia-generic" data-slide="next">
-            <i class="fas fa-angle-right"></i>
-            </a>
+  			<a class="carousel-control left" role="button" data-target="#carousel-hestia-generic" data-slide="prev">
+				<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			</a>
+			<a class="carousel-control right" role="button" data-target="#carousel-hestia-generic" data-slide="next">
+				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+			</a>
 			{{/checkIf}}
 		</div>
 	</div>

@@ -282,6 +282,22 @@
                 }]
         },
         {
+            "name": "bigheader_slider_indicators_enabled",
+            "label": "Enable Indicators",
+            "group": "Big Header",
+            "value": true,
+            "type": "checkbox",
+            "dependencies": [
+                {
+                    "field": "bigheader_effect",
+                    "value": "slider"
+                },
+                {
+                    "field": "bigheader_enabled",
+                    "value": true
+                }]
+        },
+        {
             "name": "mainWidth",
             "label": "Main width",
             "group": "Layout",

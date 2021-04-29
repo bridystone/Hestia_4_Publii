@@ -6,6 +6,9 @@
 {{/checkIf}}
 {{!-- TODO: check if we could use <main></main> tag --}}
 <div class="main  main-raised ">
+    {{#checkIf @config.custom.features_enabled '==' true}}
+    {{> features}}
+    {{/checkIf}}
     {{! loop that generates a list of posts }}
     {{#each posts}}
         <article>

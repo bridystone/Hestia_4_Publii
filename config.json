@@ -298,6 +298,264 @@
                 }]
         },
         {
+            "name": "features_enabled",
+            "label": "Enable Feature Section",
+            "group": "Features",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "features_title",
+            "label": "Title",
+            "group": "Features",
+            "value": "Why our product is the best",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_subtitle",
+            "label": "Subtitle",
+            "group": "Features",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "type": "textarea",
+            "rows": 3,
+            "cols": 100,
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Feature 1",
+            "group": "Features",
+            "size": "big",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },        
+        {
+            "name": "features_feature1_icon",
+            "label": "Icon",
+            "group": "Features",
+            "note" :"font awesome icon",
+            "value": "fab fa-weixin",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature1_icon_color",
+            "label": "Icon Color",
+            "group": "Features",
+            "value": "#e91e63",
+            "type": "colorpicker",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature1_title",
+            "label": "Title",
+            "group": "Features",
+            "value": "Responsive",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature1_text",
+            "label": "Text",
+            "group": "Features",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "type": "textarea",
+            "rows": 3,
+            "cols": 100,
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature1_link",
+            "label": "Link",
+            "group": "Features",
+            "value": "#",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Feature 2",
+            "group": "Features",
+            "size": "big",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },        
+        {
+            "name": "features_feature2_icon",
+            "label": "Icon",
+            "group": "Features",
+            "note" :"font awesome icon",
+            "value": "fas fa-check",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature2_icon_color",
+            "label": "Icon Color",
+            "group": "Features",
+            "value": "#00bcd4",
+            "type": "colorpicker",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature2_title",
+            "label": "Title",
+            "group": "Features",
+            "value": "Quality",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature2_text",
+            "label": "Text",
+            "group": "Features",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "type": "textarea",
+            "rows": 3,
+            "cols": 100,
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature2_link",
+            "label": "Link",
+            "group": "Features",
+            "value": "#",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Feature 3",
+            "group": "Features",
+            "size": "big",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },        
+        {
+            "name": "features_feature3_icon",
+            "label": "Icon",
+            "group": "Features",
+            "note" :"font awesome icon",
+            "value": "far fa-life-ring",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature3_icon_color",
+            "label": "Icon Color",
+            "group": "Features",
+            "value": "#4caf50",
+            "type": "colorpicker",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature3_title",
+            "label": "Title",
+            "group": "Features",
+            "value": "Support",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature3_text",
+            "label": "Text",
+            "group": "Features",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "type": "textarea",
+            "rows": 3,
+            "cols": 100,
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "features_feature3_link",
+            "label": "Link",
+            "group": "Features",
+            "value": "#",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "features_enabled",
+                    "value": true
+                }]
+        },
+        {
             "name": "mainWidth",
             "label": "Main width",
             "group": "Layout",

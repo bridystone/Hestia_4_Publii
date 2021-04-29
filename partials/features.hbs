@@ -1,0 +1,88 @@
+<section class="hestia-features " id="features" data-sorder="hestia_features">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 hestia-features-title-area">
+        <h2 class="hestia-title">{{@config.custom.features_title}}</h2>
+            {{#if @config.custom.features_subtitle}}
+                {{@config.custom.features_subtitle}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="hestia-features-content">
+        <div class="row">
+            {{#checkIfAny @config.custom.features_feature1_icon @config.custom.features_feature1_title @config.custom.features_feature1_text}}
+            <div class="col-xs-12 col-md-4 feature-box">
+                <div class="hestia-info">
+                    {{#if @config.custom.features_feature1_link}}
+                    <a href="{{@config.custom.features_feature1_link}}">
+                    {{/if}}
+                        {{#if @config.custom.features_feature1_icon}}
+                        <div class="icon" style="color:{{@config.custom.features_feature1_icon_color}}">
+                            <i class="{{@config.custom.features_feature1_icon}}"></i>
+                        </div>
+                        {{/if}}
+                        {{#if @config.custom.features_feature1_title}}
+                        <h4 class="info-title">{{@config.custom.features_feature1_title}}</h4>
+                        {{/if}}
+                    {{#if @config.custom.features_feature1_link}}
+                    </a>
+                    {{/if}}
+                    {{#if @config.custom.features_feature1_text}}
+                    <p>{{@config.custom.features_feature1_text}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/checkIfAny}}
+
+            {{#checkIfAny @config.custom.features_feature2_icon @config.custom.features_feature2_title @config.custom.features_feature2_text}}
+            <div class="col-xs-12 col-md-4 feature-box">
+                <div class="hestia-info">
+                    {{#if @config.custom.features_feature2_link}}
+                    <a href="{{@config.custom.features_feature2_link}}">
+                    {{/if}}
+                        {{#if @config.custom.features_feature2_icon}}
+                        <div class="icon" style="color:{{@config.custom.features_feature2_icon_color}}">
+                            <i class="{{@config.custom.features_feature2_icon}}"></i>
+                        </div>
+                        {{/if}}
+                        {{#if @config.custom.features_feature2_title}}
+                        <h4 class="info-title">{{@config.custom.features_feature2_title}}</h4>
+                        {{/if}}
+                    {{#if @config.custom.features_feature2_link}}
+                    </a>
+                    {{/if}}
+                    {{#if @config.custom.features_feature2_text}}
+                    <p>{{@config.custom.features_feature2_text}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/checkIfAny}}
+
+            {{#checkIfAny @config.custom.features_feature3_icon @config.custom.features_feature3_title @config.custom.features_feature3_text}}
+            <div class="col-xs-12 col-md-4 feature-box">
+                <div class="hestia-info">
+                    {{#if @config.custom.features_feature3_link}}
+                    <a href="{{@config.custom.features_feature3_link}}">
+                    {{/if}}
+                        {{#if @config.custom.features_feature3_icon}}
+                        <div class="icon" style="color:{{@config.custom.features_feature3_icon_color}}">
+                            <i class="{{@config.custom.features_feature3_icon}}"></i>
+                        </div>
+                        {{/if}}
+                        {{#if @config.custom.features_feature3_title}}
+                        <h4 class="info-title">{{@config.custom.features_feature3_title}}</h4>
+                        {{/if}}
+                    {{#if @config.custom.features_feature3_link}}
+                    </a>
+                    {{/if}}
+                    {{#if @config.custom.features_feature3_text}}
+                    <p>{{@config.custom.features_feature3_text}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/checkIfAny}}
+
+        </div>
+    </div>
+</div>
+</section>

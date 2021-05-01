@@ -4,7 +4,8 @@
 {{#checkIf @config.custom.bigheader_enabled '==' true}}
     {{> bigheader}}
 {{/checkIf}}
-<main>
+{{!-- TODO: check if we could use <main></main> tag --}}
+<div class="main  main-raised ">
     {{! loop that generates a list of posts }}
     {{#each posts}}
         <article>

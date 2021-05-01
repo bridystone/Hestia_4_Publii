@@ -1,0 +1,9 @@
+<section class="hestia-about section-image" id="about" data-sorder="hestia_about" style="background-image: url({{@config.custom.about_background}});">
+    <div class="container">
+        <div class="row hestia-about-content">
+            {{#getPost @config.custom.about_postid}}
+                {{{text}}}
+            {{/getPost}}
+        </div>
+    </div>
+</section>

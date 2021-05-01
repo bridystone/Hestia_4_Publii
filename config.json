@@ -556,6 +556,40 @@
                 }]
         },
         {
+            "name": "about_enabled",
+            "label": "Enabled",
+            "group": "About Section",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "about_background",
+            "label": "Background",
+            "group": "About Section",
+            "value": "",
+            "type": "upload",
+            "dependencies": [
+
+                {
+                    "field": "about_enabled",
+                    "value": true
+                }]
+        },
+        {
+            "name": "about_postid",
+            "label": "Post",
+            "group": "About Section",
+            "value": "",
+            "type": "posts-dropdown",
+            "allowedPostStatus": ["any"],
+            "multiple": false,
+            "dependencies": [
+                {
+                    "field": "about_enabled",
+                    "value": true
+                }]
+        },            
+        {
             "name": "mainWidth",
             "label": "Main width",
             "group": "Layout",

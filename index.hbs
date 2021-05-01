@@ -4,8 +4,8 @@
 {{#checkIf @config.custom.bigheader_enabled '==' true}}
     {{> bigheader}}
 {{/checkIf}}
-{{!-- TODO: check if we could use <main></main> tag --}}
-<div class="main  main-raised ">
+
+<main class="main  main-raised ">
     {{#checkIf @config.custom.features_enabled '==' true}}
     {{> features}}
     {{/checkIf}}

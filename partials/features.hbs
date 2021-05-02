@@ -1,6 +1,6 @@
-<section class="hestia-features " id="features" data-sorder="hestia_features">
+<section class="hestia-features aos-animate" id="features" data-sorder="hestia_features">
 <div class="container">
-    <div class="row">
+    <div class="row" data-aos="flip-down">
         <div class="col-md-8 col-md-offset-2 hestia-features-title-area">
         <h2 class="hestia-title">{{@config.custom.features_title}}</h2>
             {{#if @config.custom.features_subtitle}}
@@ -8,8 +8,9 @@
             {{/if}}
         </div>
     </div>
-    <div class="hestia-features-content aos-animate">
-        <div class="row aos-init aos-animate" data-aos="fade-up">
+    <div class="hestia-features-content">
+        {{!-- TODO: AOS-INIT?!?! AOS-animate? data-aos=ausreichend --}}
+        <div class="row aos-init" data-aos="flip-up">
             {{#checkIfAny @config.custom.features_feature1_icon @config.custom.features_feature1_title @config.custom.features_feature1_text}}
             <div class="col-xs-12 col-md-4 feature-box">
                 <div class="hestia-info">

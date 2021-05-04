@@ -66,8 +66,14 @@
 
    </head>
    {{!-- TODO: check, if these classes are used or Wordpress defaults --}}
-   <body class="home page-template-default page blog-post header-layout-default">
-
+   <body class="page-template-default page blog-post header-layout-default
+   {{!-- TODO: There might be more classes depending on the context --}}
+   {{#is "index"}}
+      home
+   {{else}}
+      blog
+   {{/is}}
+   ">
       {{! code injection by a Custom HTML tool }}
       {{{@bodyCustomCode}}}
       {{! /code injection by a Custom HTML tool }}

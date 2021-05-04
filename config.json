@@ -8,8 +8,8 @@
         "renderSimilarPosts": false,
         "renderPrevNextPosts": true,
         "createContentStructure": true,
-        "includeFeaturedInPosts": true,
-        "tagsIncludeFeaturedInPosts": true,
+        "includeFeaturedInPosts": false,
+        "tagsIncludeFeaturedInPosts": false,
         "authorsIncludeFeaturedInPosts": true,
         "featuredPostsNumber": 0,
         "tagsFeaturedPostsNumber": 0,
@@ -69,7 +69,94 @@
             "upload": true
         }
     ],
+    "tagTemplates": {
+        "blog": "Blog Template - no real Template"
+    },
     "customConfig": [
+        {   "_comment": " ---====---===--- BLOG SITE CONFIGURATION ---===---===--- "},
+        {
+            "name": "blog_tag",
+            "label": "Blog Tag",
+            "group": "Blog Header",
+            "value": "Blog",
+            "note": "Specify the Tag that defines all your blog posts",
+            "type": "tags-dropdown",
+            "multiple": false
+        },
+        {
+            "name": "blog_header_configuration",
+            "label": "Blogheader Picture position",
+            "note": "featured picture taken from tag", 
+            "group": "Blog Header",
+            "value": "no_picture",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "no picture",
+                    "value": "no_picture"
+                },
+                {
+                    "label": "small picture",
+                    "value": "small_picture"
+                },
+                {
+                    "label": "big picture",
+                    "value": "big_picture"
+                },
+                {
+                    "label": "inline picture",
+                    "value": "inline_picture"
+                }
+            ]         
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Blog List Style",
+            "group": "Blog Header",
+            "size": "big"
+        },
+        {
+            "name": "blog_list_style_shadow",
+            "label": "Shadow Enabled",
+            "group": "Blog Header",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "blog_list_style_grid",
+            "label": "Grid Layout",
+            "group": "Blog Header",
+            "note": "Grid not yet implemented",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "blog_list_style_picture_position",
+            "label": "Picture Position",
+            "group": "Blog Header",
+            "value": "left",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "left",
+                    "value": "left"
+                },
+                {
+                    "label": "alternating",
+                    "value": "alternating"
+                },
+                {
+                    "label": "right",
+                    "value": "right"
+                }
+            ],
+            "dependencies": [
+                {
+                    "field": "blog_list_style_grid",
+                    "value": false
+                }]            
+        },
         {   "_comment": " ---====---===--- BIG HEADER SECTION CONFIGURATION ---===---===--- "},
         {
             "name": "bigheader_enabled",

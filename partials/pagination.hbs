@@ -1,47 +1,31 @@
 {{! check if pagination exist }}
 {{#if @pagination}}
-   <nav class="pagination">
-      {{! check the sort of posts order direction (located in Site Settings -> Post listing) }}
-      {{#checkIf @website.postsOrdering '==' "desc"}}
-         {{#if @pagination.nextPage}}
-            <a href="{{@pagination.nextPageUrl}}">
-               {{#checkIf @website.postsOrdering '==' "desc"}}
-                  {{ translate 'partials.pagination.prev' }}               
-               {{else}}
-                  {{ translate 'partials.pagination.next' }}  
-               {{/checkIf}}
-            </a>
-         {{/if}}
+   <nav class="navigation pagination" role="navigation" aria-label="Beiträge">
+      <h2 class="screen-reader-text">Beitrags-Navigation</h2>
+      <div class="nav-links">
+
          {{#if @pagination.previousPage}}
-            <a href="{{@pagination.previousPageUrl}}">
-               {{#checkIf @website.postsOrdering '==' "desc"}}
-                  {{ translate 'partials.pagination.next' }}
-               {{else}}
-                  {{ translate 'partials.pagination.prev' }}
-               {{/checkIf}}
+            <a class="prev page-numbers" href="{{@pagination.previousPageUrl}}">
+               prev
             </a>
          {{/if}}
-      {{else}}
-         {{#if @pagination.previousPage}}
-            <a href="{{@pagination.previousPageUrl}}">
-               {{#checkIf @website.postsOrdering '==' "desc"}}
-                  {{ translate 'partials.pagination.next' }}
-               {{else}}
-                  {{ translate 'partials.pagination.prev' }}
-               {{/checkIf}}
-            </a>
-         {{/if}}
+         {{#each @pagination.pages}}
+            {{#isCurrentPage @pagination.currentPage this}}
+               <span aria-current="page" class="page-numbers current">{{this}}</span>
+            {{else}}
+            {{!-- TODO: span with dots if too many posts --}}
+            {{!-- <span class="page-numbers dots">…</span> --}}
+               <a class="page-numbers" href="{{pageUrl @pagination.context this}}">
+                  {{this}}
+               </a>
+            {{/isCurrentPage}}
+         {{/each}}
          {{#if @pagination.nextPage}}
-            <a href="{{@pagination.nextPageUrl}}">
-               {{#checkIf @website.postsOrdering '==' "desc"}}
-                  {{ translate 'partials.pagination.prev' }}
-               {{else}}
-                  {{ translate 'partials.pagination.next' }}
-               {{/checkIf}}
+            <a class="next page-numbers" href="{{@pagination.nextPageUrl}}">
+               next
             </a>
          {{/if}}
-      {{/checkIf}}
-      {{! /check the sort of posts order direction}}
+      </div>
    </nav>
 {{/if}}
 {{! /check if pagination exist }}

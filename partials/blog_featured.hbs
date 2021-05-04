@@ -1,0 +1,46 @@
+<div class="hestia-blog-featured-posts  col-md-10 col-md-offset-1 ">
+    <div class="row">
+
+    {{!-- use counter Variable to identify the first post --}}
+    {{setVar _featuredpost_counter 0 @config.custom}}
+
+    {{! loop that generates a list of posts }}
+    {{#each featuredPosts}}
+
+    <article 
+        class="hestia-blog-featured-card post type-post status-publish format-standard has-post-thumbnail hentry category-allgemein
+
+    {{!-- if only 1 Post - this post is big or the 3rd one is big --}}
+        {{#checkIf (getPostCount ../featuredPosts) '==' 1}}
+            col-md-12
+        {{else}}
+            {{#checkIf (incVar _featuredpost_counter @config.custom) '==' 3}}
+                col-md-12
+            {{else}}
+                col-md-6
+            {{/checkIf}}
+        {{/checkIf}}
+    "> {{!-- of article --}}
+        <div class="card card-raised card-background" style="background-image:url({{featuredImage.url}})">
+            <div class="card-body">
+                {{!-- TAGS --}}
+                <h6 class="category text-info">
+                    {{#each tags}}
+                    <a href="{{url}}" title="Tag: {{name}}" rel="tag">{{name}}</a> 
+                    {{/each}}
+                </h6>
+                <a href="{{url}}" rel="bookmark">
+                    <h2 class="card-title entry-title">{{title}}</h2>
+                </a>
+                <p class="card-description entry-summary">
+                    {{{ excerpt }}}
+                </p>
+                <a href="{{url}}" class="btn colored-button">More</a>
+            </div>
+        </div>
+    </article>
+
+    {{/each}}
+    {{! /loop that generates list of posts }}
+    </div>
+</div>

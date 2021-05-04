@@ -1,0 +1,40 @@
+{{#if featuredImage.url}}
+<div class="col-ms-5 col-sm-5">
+    <div class="card-image">
+        <a href="{{url}}" title="{{title}}">
+            {{! featured image }}
+            {{#featuredImage}}
+                {{! checks if an image exists }}
+                {{#if url}}
+                    <figure>
+                        <img
+                            class="attachment-hestia-blog size-hestia-blog wp-post-image" 
+                            src="{{url}}"
+                            {{! checks if the Responsive Images option (located in Site Settings -> Website Speed) is enabled  }}
+                            {{#if @config.site.responsiveImages}}
+                                {{responsiveImageAttributes 'featuredImage' srcset sizes}}
+                            {{/if}}
+                            {{! generates a native loading attribute; if the Media Lazy Load option (located in Site Settings -> Website Speed) is disabled, the loading attribute is not generated  }}
+                            {{lazyload "lazy"}}
+                            height="{{height}}" {{!-- 240 --}}
+                            width="{{width}}"   {{!-- 360 --}}
+                            alt="{{alt}}">
+
+                            {{! checks if a caption and credits exist  }}
+                            {{#checkIfAny caption credits}}
+                                <figcaption>
+                                    {{caption}}
+                                    {{credits}}
+                                </figcaption>                      
+                            {{/checkIfAny}}
+                            {{! /checks if a caption and credits exist  }}
+
+                    </figure>
+                {{/if}}
+                {{! /checks if an image exists }}
+            {{/featuredImage}}
+            {{! /featured image }}
+        </a>
+    </div>
+</div>
+{{/if}}

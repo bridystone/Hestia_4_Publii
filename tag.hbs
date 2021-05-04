@@ -1,125 +1,95 @@
-{{! Tag page; this file renders a tag page containing a list of the latest posts }}
+{{! Front page; this file renders a front page with a list of the latest posts }}
 {{> head}}
 {{> navbar}}
-<main>
-   
-   {{! indicates the tag's context}}
-      {{#tag}}
 
-         {{! tag featured image }}
-         {{#featuredImage}}
-            {{! checks if an image exists }}
-            {{#if url}}
-               <figure>
-                  <img
-                     src="{{url}}"
-                     {{! checks if the Responsive Images option (located in Site Settings -> Website Speed) is enabled  }}
-                     {{#if @config.site.responsiveImages}}
-                        {{responsiveImageAttributes 'tagImage' srcset sizes}}
-                     {{/if}}
-                     {{! generates a native loading attribute; if the Media Lazy Load option (located in Site Settings -> Website Speed) is disabled, the loading attribute is not generated  }}
-                     {{lazyload "lazy"}}
-                     height="{{height}}"
-                     width="{{width}}"
-                     alt="{{alt}}">
+{{> blog_header source='tag'}}
+{{!-- TODO: FIX FOR TRANSPARENT NAVBAR DURING INLINE--}}
+<main class="main main-raised"  {{#checkIf @config.custom.blog_header_configuration '==' 'inline_picture'}} style="margin-top: 20px;"{{/checkIf}}>
+<div class="hestia-blogs" data-layout="full-width">
+    <div class="container">
+        {{#checkIf @config.custom.blog_header_configuration '!=' 'big_picture'}}
+{{!-- FIX FOR PICTURE NOT IN MIDDLE --}}
+<div class="row">
+<div class="col-md-8 single-post-container col-md-offset-2" data-layout="full-width">
+{{!-- /FIX FOR PICTURE NOT IN MIDDLE --}}
 
-                  {{! checks if a caption and credits exist  }}
-                  {{#checkIfAny caption credits}}
-                     <figcaption>
-                        {{caption}}
-                        {{credits}}
-                     </figcaption>                      
-                  {{/checkIfAny}}
-                  {{! /checks if a caption and credits exist  }}
-                  
-               </figure>
-            {{/if}}
-            {{! /checks if an image exists }}
-         {{/featuredImage}}
-         {{! /tag featured image }}
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="hestia-title title-in-content">{{tag.name}}</h1>
+                {{#checkIf @config.custom.blog_header_configuration '==' 'inline_picture'}}
+                <img class="wp-post-image image-in-page" 
+                    src="
+                        {{#if tag.featuredImage.url}} 
+                            {{tag.featuredImage.url}}
+                        {{else}}
+                        {{!-- fallback to bigheader background, of tag has no image --}}
+                            {{@config.custom.bigheader_background}}
+                        {{/if}}
+                    "
+                    alt=""
+                >
+                {{/checkIf}}
+            </div>
+        </div>
+</div>
+</div>
+        {{/checkIf}}
 
-         <h1>
-            {{name}}
-            <sup>({{postsNumber}})</sup>
-         </h1>
+{{#checkIf tag.id '==' @config.custom.blog_tag}}
+    {{#if @renderer.isFirstPage}}
+    {{>blog_featured}}
+    {{/if}}
+{{/checkIf}}
 
-         {{! check if a tag description exists }}
-         {{#if description}}
-            <p>
-               {{description}}
-            </p>
-         {{/if}}
-         {{! /check if a tag description exists }}  
+<div class="row">
+	<div class="col-md-10 col-md-offset-1 blog-posts-wrap">
+		<div class="flex-row">
 
-      {{/tag}}
-   {{! /indicates the tag's context }}
+            {{!-- use counter Variable to identify the odd/even post --}}
+            {{setVar _post_counter 0 @config.custom}}
 
-   {{! loop that generates a list of posts }}
-   {{#each posts}}
-      <article>
+            {{#each posts}}
+            <article id="post-40"
+                class="card card-blog post type-post status-publish format-standard has-post-thumbnail hentry 
+                {{#if @config.custom.blog_list_style_shadow}}
+                card-raised sticky
+                {{else}}
+                card-plain
+                {{/if}}
+                ">
+                <div class="row ">
+                    {{#checkIf @config.custom.blog_list_style_picture_position '==' 'right'}}
+                        {{>bloglist_text}}
+                        {{>bloglist_image}}
+                    {{/checkIf}}
+                    {{#checkIf @config.custom.blog_list_style_picture_position '==' 'left'}}
+                        {{>bloglist_image}}
+                        {{>bloglist_text}}
+                    {{/checkIf}}
+                    {{#checkIf @config.custom.blog_list_style_picture_position '==' 'alternating'}}
+                        {{#checkIf (math (incVar _post_counter @config.custom) '%' 2) '==' 0}}
+                            {{>bloglist_image}}
+                            {{>bloglist_text}}
+                        {{else}}
+                            {{>bloglist_text}}
+                            {{>bloglist_image}}
+                        {{/checkIf}}
+                    {{/checkIf}}
 
-         {{! featured image }}
-         {{#featuredImage}}
-            {{! checks if an image exists }}
-            {{#if url}}
-               <img
-                     src="{{url}}"
-                     {{! checks if the Responsive Images option (located in Site Settings -> Website Speed) is enabled }}
-                     {{#if @config.site.responsiveImages}}
-                        {{responsiveImageAttributes 'featuredImage' srcset sizes}}
-                     {{/if}}
-                     {{! generates a native loading attribute; if the Media Lazy Load option (located in Site Settings -> Website Speed) is disabled, the loading attribute is not generated }}
-                     {{lazyload "lazy"}}
-                     height="{{height}}"
-                     width="{{width}}"
-                     alt="{{alt}}">
-            {{/if}}
-            {{! /checks if an image exists }}
-         {{/featuredImage}}
-         {{! /featured image }}
+                </div>
+            </article>
+            {{/each}}
+		</div>
+{{!-- PAGINATE --}}
+    {{> pagination}}
+	</div>
+</div>
 
-         {{! post title }}
-         <h2>
-            <a href="{{url}}">{{title}}</a>
-         </h2>
-         {{! /post title }}
 
-         {{! post creation date }}
-         <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
-            {{date createdAt}}
-         </time>
-         {{! /post creation date }}
 
-         {{! post author }}
-         {{#author}}
-            <img src="{{avatar}}" {{lazyload "lazy"}} alt="">
-            <a href="{{url}}">{{name}}</a>
-         {{/author}}
-         {{! /post author }}
 
-         {{! main tag - if not selected, the first tag in the list of all tags
-         will be displayed }}
-         {{#if mainTag}}
-            <a href="{{mainTag.url}}">{{mainTag.name}}</a>
-         {{/if}}
-         {{! /main tag }}
+    </div>
+</div>
 
-         {{! post excerpt - the Custom excerpt is generated when the Read More button is used when editing a post }}
-         {{#if hasCustomExcerpt}}
-            {{{ excerpt }}}
-         {{else}}
-            <p>{{{ excerpt }}}</p>
-         {{/if}}
-         {{! /post excerpt }}
-
-      </article>
-   {{/each}}
-   {{! /loop that generates a list of posts }}
-   
 </main>
-<aside>
-   {{> sidebar}} 
-</aside>
-
-{{> pagination}}
 {{> footer}}

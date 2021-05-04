@@ -1,0 +1,57 @@
+{{#checkIf @config.custom.blog_header_configuration '!=' 'inline_picture'}}
+{{!-- NO Header PIC --}}
+<div id="primary" class="boxed-layout-header page-header header-small" data-parallax="active"
+    {{#checkIf @config.custom.blog_header_configuration '!=' 'big_picture'}} 
+        style="min-height: 300px;"
+    {{/checkIf}}
+    >
+    {{!-- TITLE FOR BIG HEADER --}}
+    {{#checkIf @config.custom.blog_header_configuration '==' 'big_picture'}} 
+    <div class="container" style="padding-top: 170px;">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <h1 class="hestia-title">
+                    {{!-- check if blog or body (or author) --}}
+                    {{#checkIf source '==' 'tag'}}
+                        {{!-- item == tag --}}
+                        {{tag.name}}
+                    {{else}}
+                        {{!-- item == post --}}
+                        {{post.title}}
+                        {{post.author.avatar}}
+                    {{/checkIf}}
+                </h1>
+            </div>
+        </div>
+    </div>
+    {{/checkIf}}
+
+    {{!-- style of the background --}}
+    <div
+        {{#checkIf @config.custom.blog_header_configuration '==' 'no_picture'}} 
+            class="header-filter header-filter-gradient"
+        {{else}}
+            class="header-filter"
+            style="background-image: url(
+                {{#checkIf source '==' 'tag'}}
+                    {{#if tag.featuredImage.url}} 
+                        {{tag.featuredImage.url}}
+                    {{else}}
+                    {{!-- fallback to bigheader background, of tag has no image --}}
+                        {{@config.custom.bigheader_background}}
+                    {{/if}}
+                {{else}}
+                    {{#if post.featuredImage.url}} 
+                        {{post.featuredImage.url}}
+                    {{else}}
+                    {{!-- fallback to bigheader background, of tag has no image --}}
+                        {{@config.custom.bigheader_background}}
+                    {{/if}}
+                {{/checkIf}}
+                );"
+        {{/checkIf}}
+        >
+    </div>
+</div>
+{{/checkIf}} 
+{{!-- end of: no inline picture --}}

@@ -1,0 +1,41 @@
+{{#if featuredImage.url}}
+<div class="col-ms-7 col-sm-7">
+{{else}}
+<div class="col-ms-12 col-sm-12">
+{{/if}}
+    <h6 class="category text-info">
+        {{#each tags}}
+        <a href="{{url}}" title="Tag: {{name}}" rel="tag">{{name}}</a> 
+        {{/each}}
+    </h6>
+    <h2 class="card-title entry-title">
+        <a
+            href="{{url}}"
+            title="{{title}}" rel="bookmark">{{title}}</a>
+        </h2>
+    <div class="card-description entry-summary ">
+        <p>{{{excerpt}}}
+            <a class="moretag"
+                href="{{url}}">
+                More</a>
+        </p>
+    </div>
+    <div class="posted-by vcard author">
+        by
+        {{#author}}
+            <img src="{{avatar}}" {{lazyload "lazy"}} alt="">
+            <a href="{{url}}" title="{{name}}" class="url">
+                <b class="author-name fn">{{name}}</b>
+            </a>
+        {{/author}}
+        , at 
+        <a href="{{url}}">
+            <time class="entry-date published" datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                {{date createdAt}}
+            </time>
+            <time class="updated hestia-hidden" datetime="{{date modifiedAt 'YYYY-MM-DDTHH:mm'}}">
+                {{date modifiedAt}}
+            </time>
+        </a>
+    </div>
+</div>

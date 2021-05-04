@@ -1,7 +1,12 @@
 {{! Post page; this file renders a single post and loads all the content}}
 {{> head}}
 {{> navbar}}
-<main>
+
+{{> blog_header source='post'}}
+{{!-- TODO: FIX FOR TRANSPARENT NAVBAR DURING INLINE--}}
+<main class="main main-raised" {{#checkIf @config.custom.blog_header_configuration '==' 'inline_picture'}} style="margin-top: 70px;"{{/checkIf}}>
+<div class="blog-post blog-post-wrapper">
+   <div class="container">
 
    {{! injects code via a Custom HTML tool - as defined in the config.json file in the "renderer" section }}
    {{#if @customHTML.beforePost}}
@@ -11,121 +16,128 @@
    {{/if}}
    {{! /injects code via a Custom HTML tool }}
 
-   {{! indicates the post's context}}
-   {{#post}}
-      <article> 
-         <header>
+      {{#post}}
+      <article id="post-entry" class="section section-text">
+         <div class="row">
+            <div class="col-md-8 single-post-container col-md-offset-2" data-layout="full-width">
+               <div class="single-post-wrap entry-content">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h1 class="hestia-title title-in-content entry-title">{{title}}</h1>
+                        {{#author}}
+                        <p class="author meta-in-content">Veröffentlicht von 
+                           <img src="{{avatar}}" {{lazyload "eager"}} alt="{{name}}">
+                           <a href="{{url}}" class="vcard author">
+                              <strong class="fn">{{name}}</strong>
+                           </a>
+                        {{/author}}
+                            am 
+                           <time class="entry-date published" datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                              {{date createdAt}}
+                           </time>
+                           <time class="updated hestia-hidden" datetime="{{date modifiedAt 'YYYY-MM-DDTHH:mm'}}">
+                              {{date modifiedAt}}
+                           </time>
+                        </p>
+                        {{! featured image }}
+                        {{#featuredImage}}
+                           {{! checks if an image exists }}
+                           {{#if url}}
+                              <figure>
+                                    <img
+                                       class="image-in-page" 
+                                       src="{{url}}"
+                                       {{! checks if the Responsive Images option (located in Site Settings -> Website Speed) is enabled  }}
+                                       {{#if @config.site.responsiveImages}}
+                                          {{responsiveImageAttributes 'featuredImage' srcset sizes}}
+                                       {{/if}}
+                                       {{! generates a native loading attribute; if the Media Lazy Load option (located in Site Settings -> Website Speed) is disabled, the loading attribute is not generated  }}
+                                       {{lazyload "lazy"}}
+                                       height="{{height}}" {{!-- 240 --}}
+                                       width="{{width}}"   {{!-- 360 --}}
+                                       alt="{{alt}}">
 
-            {{! post title }}
-            <h1>
-               {{title}}
-            </h1>
-            {{! /post title }}
+                                       {{! checks if a caption and credits exist  }}
+                                       {{#checkIfAny caption credits}}
+                                          <figcaption>
+                                                {{caption}}
+                                                {{credits}}
+                                          </figcaption>                      
+                                       {{/checkIfAny}}
+                                       {{! /checks if a caption and credits exist  }}
 
-            {{! post creation date }}
-            <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
-               {{date createdAt}}
-            </time>
-            {{! /post creation date }}
-
-            {{! post author }}
-            {{ translate 'post.publishedBy' }}
-            {{#author}}
-               <a href="{{url}}" rel="author" title="{{name}}">{{name}}</a>
-            {{/author}}
-            {{! /post author }}
-
-            {{! main tag - if not selected, the first tag in the list of all tags will be displayed }}
-            {{#if mainTag}}
-               <a href="{{ mainTag.url }}" class="post__maintag">
-                  {{mainTag.name }}
-               </a>
-            {{/if}}
-            {{! /main tag }}
-
-            {{! post modification date }}
-            {{#if modifiedAt}}
-               {{ translate 'post.lastUpdatedDate' }}
-               <time datetime="{{date modifiedAt 'YYYY-MM-DDTHH:mm'}}">
-                  {{date modifiedAt}}
-               </time>
-            {{/if}}
-            {{! /post modification date }}
-
-         </header>
-
-         {{! featured image }}
-         {{#featuredImage}}
-            {{! check if an image exists }}
-            {{#if url}}
-               <figure id="featured-image">
-                  <img
-                     src="{{url}}"
-                     {{! checks if the Responsive Images option (located in Site Settings -> Website Speed) is enabled  }}
-                     {{#if @config.site.responsiveImages}}
-                        {{responsiveImageAttributes 'featuredImage' srcset sizes}}
-                     {{/if}}
-                     {{! generates a native loading attribute; if the Media Lazy Load option (located in Site Settings -> Website Speed) is disabled, the loading attribute is not generated }}
-                     {{ lazyload "eager" }}
-                     height="{{height}}"
-                     width="{{width}}"
-                     alt="{{alt}}">
-                  {{! checks if the caption or credits exist }}
-                  {{#checkIfAny caption credits}}
-                     <figcaption>
-                        {{caption}}
-                        {{credits}}
-                     </figcaption>
-                  {{/checkIfAny}}
-                  {{! /checks if the caption or credits exist }}
-               </figure>
-            {{/if}}
-            {{! /check if an image exists }}
-         {{/featuredImage}}
-         {{! /featured image }}
-         
-         {{! post body }}
-         <div id="post-entry">
-            {{{text}}}
-         </div>
-         {{! /post body }}
-
-         {{! checks if the "displayAuthorBio" post option is enabled - the Post Options are defined in the config.json in the "postConfig" section, and are accessible in the Theme -> Post Options section of Publii and in the post editor itself in the sidebar -> Other Options section }}
-         {{#if @config.post.displayAuthorBio}}
-            {{! author bio section }}
-            {{#author}}
-               <div id="author-bio">
-
-                  {{! checks if an author avatar exists }}
-                  {{#if avatar}}
-                     <img
-                        src="{{avatar}}"
-                        {{ lazyload "lazy" }}
-                        alt="{{name}}">
-                  {{/if}}
-                  {{! /checks if an author avatar exists }}
-
-                  {{! displays the author's name with a link to the author's page }}
-                     <h3>
-                        <a href="{{url}}" title="{{name}}">{{name}}</a>
-                     </h3>
-                  {{! /displays the author's name with a link to the author's page }}
-
-
-                  {{! checks if an author description exists }}
-                  {{#if description}}
-                     <p>
-                        {{description}}
-                     </p>
-                  {{/if}}
-                  {{! /checks if an author description exists }}
-               
+                              </figure>
+                           {{/if}}
+                           {{! /checks if an image exists }}
+                        {{/featuredImage}}
+                        {{! /featured image }}
+                     </div>
+                  </div>
+                  {{{text}}}
                </div>
-            {{/author}}
-            {{! /author bio section }}
-         {{/if}}
-         {{! /check if the "displayAuthorBio" Post option is enabled  }}
 
+               <div class="section section-blog-info">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="entry-categories">Kategorien:
+                           {{#each tags}}
+                           <span class="label label-primary">
+                              <a href="{{url}}" title="Tag: {{name}}" rel="tag">{{name}}</a> 
+                           </span>
+                           {{/each}}
+                        </div>
+                     </div>
+{{!-- SOCIAL MEDIA --}}
+                     <div class="col-md-6">
+                        <div class="entry-social">
+                           <a target="_blank" rel="tooltip" data-original-title="Auf Facebook teilen"
+                              class="btn btn-just-icon btn-round btn-facebook customize-unpreviewable"
+                              href="https://www.facebook.com/sharer.php?u={{url}}">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="17">
+                                 <path fill="currentColor"
+                                    d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z">
+                                 </path>
+                              </svg>
+                           </a>
+
+                           <a target="_blank" rel="tooltip" data-original-title="Auf Twitter teilen"
+                              class="btn btn-just-icon btn-round btn-twitter customize-unpreviewable"
+                              href="http://twitter.com/share?url={{url}}&amp;text={{title}}">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17">
+                                 <path fill="currentColor"
+                                    d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
+                                 </path>
+                              </svg>
+                           </a>
+
+                           <a rel="tooltip" data-original-title=" Per E-Mail teilen" class="btn btn-just-icon btn-round"
+                              href="mailto:?subject={{title}}&amp;body={{url}}">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17">
+                                 <path fill="currentColor"
+                                    d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z">
+                                 </path>
+                              </svg>
+                           </a>
+                        </div>
+                     </div>
+                     {{!-- /SOCIAL MEDIA SHARE --}}
+                  </div>
+                  <hr>
+
+               </div>
+            </div>
+         </div>
+      </article>
+   
+      {{! code injection by a Custom HTML tool - defined in config.json file in the renderer section}}
+      {{#if @customHTML.afterPost}}
+         <div id="custom-html-after-post">
+            {{{@customHTML.afterPost}}}
+         </div>
+      {{/if}}
+      {{! injects code via a Custom HTML tool }}
+
+{{!-- 
          {{! previous & next post }}
          {{! checks if there are any posts besides the current one; including ../ segment on a path, we change the post context into the parent context }}
          {{#checkIfAny ../previousPost ../nextPost}}
@@ -191,18 +203,12 @@
          {{/if}}
          {{! /check if there is any related post }}
          {{! /related posts }}
+ --}}
 
-      </article>
-   {{/post}}
-   {{! /indicates the post's context}}
-   
-   {{! code injection by a Custom HTML tool - defined in config.json file in the renderer section}}
-   {{#if @customHTML.afterPost}}
-      <div id="custom-html-after-post">
-         {{{@customHTML.afterPost}}}
-      </div>
-   {{/if}}
-   {{! injects code via a Custom HTML tool }}
+
+      {{/post}}
+   </div>
+</div>
 
 </main>
 <aside>

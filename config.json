@@ -70,6 +70,7 @@
         }
     ],
     "customConfig": [
+        {   "_comment": " ---====---===--- BIG HEADER SECTION CONFIGURATION ---===---===--- "},
         {
             "name": "bigheader_enabled",
             "label": "Enabled",
@@ -297,6 +298,7 @@
                     "value": true
                 }]
         },
+        {   "_comment": " ---====---===--- FEATURES SECTION CONFIGURATION ---===---===--- "},
         {
             "name": "features_enabled",
             "label": "Enable Feature Section",
@@ -555,6 +557,7 @@
                     "value": true
                 }]
         },
+        {   "_comment": " ---====---===--- ABOUT SECTION CONFIGURATION ---===---===--- "},
         {
             "name": "about_enabled",
             "label": "Enabled",
@@ -588,7 +591,8 @@
                     "field": "about_enabled",
                     "value": true
                 }]
-        },            
+        },
+        {   "_comment": " ---====---===--- DEFAULT BLANK THEME CONFIGURATION ---===---===--- "},
         {
             "name": "mainWidth",
             "label": "Main width",
